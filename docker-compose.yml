@@ -14,14 +14,14 @@ services:
     image: logstash:2.3.2
     command: logstash -f /etc/logstash/conf.d/logstash.conf
     volumes:
-      - /home/alex/dev/docker/elk/logstash:/etc/logstash/conf.d
-      - /home/alex/dev/docker/elk/logstash/patterns:/opt/logstash/patterns
+      - /home/alex/dev/docker/docker-elk-config/logstash:/etc/logstash/conf.d
+      - /home/alex/dev/docker/docker-elk-config/logstash/patterns:/opt/logstash/patterns
     depends_on:
       - elasticsearch
   filebeat:
     image: prima/filebeat
     volumes:
-      - /home/alex/dev/docker/elk/filebeat/filebeat.yml:/filebeat.yml
-      - /home/alex/dev/docker/elk/fake-logs:/var/log
+      - /home/alex/dev/docker/docker-elk-config/filebeat/filebeat.yml:/filebeat.yml
+      - /home/alex/dev/docker/docker-elk-config/fake-logs:/var/log
     depends_on:
       - logstash   
